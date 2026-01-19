@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TollFeeCalculator.Application.Interfaces;
-using TollFeeCalculator.Application.Models;
-using TollFeeCalculator.Enterprise.Entities;
 using TollFeeCalculator.Presentation.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TollFeeCalculator.Presentation.Controllers
 {
