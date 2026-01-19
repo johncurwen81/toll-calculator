@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Options;
-using System.Threading;
 using TollFeeCalculator.Application.Extensions;
 using TollFeeCalculator.Application.Interfaces;
 using TollFeeCalculator.Application.Models;
