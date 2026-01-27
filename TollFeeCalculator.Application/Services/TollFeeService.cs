@@ -46,21 +46,18 @@ namespace TollFeeCalculator.Application.Services
                 return new GetTollFeeResultModel(0);
             }
 
-            var total = 0;
+            var tollRequired = new List<DateTime>();
 
-            foreach (var dayGroup in ordered.GroupBy(d => DateOnly.FromDateTime(d)))
+            for (int i = ordered.Count-1; i >= 0 ; i--)
             {
-                ct.ThrowIfCancellationRequested();
-
-                var date = dayGroup.Key;
-
-                if (await _calendarService.IsTollFreeAsync(date, ct).ConfigureAwait(false))
+                var date = ordered[i];
+                if (await _calendarService.IsTollFreeAsync(DateOnly.FromDateTime(date), ct).ConfigureAwait(false) == false)
                 {
-                    continue;
+                    tollRequired.Add(date);
                 }
-
-                total += CalculateDayTotal(dayGroup);
             }
+
+            var total = CalculateDayTotal(tollRequired); 
 
             return new GetTollFeeResultModel(total);
         }
